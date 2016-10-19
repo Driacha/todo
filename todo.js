@@ -5,22 +5,22 @@ data = data || {};
 
 (function(todo, data, $) {
 
-var defaults = {
-	todoTask: "todo-task",
-	todoHeader: "task-header",
-	todoDate: "task-date",
-	todoDescription: "task-description",
-	taskId: "task-",
-	formId: "todo-form",
-	dataAttribute: "data",
-	deleteDiv: "delete-div",
-}, codes = {
-	"1" : "#pending"
-	"2" : "#inProgress"
-	"3" : "#competed"
-};
+    var defaults = {
+            todoTask: "todo-task",
+            todoHeader: "task-header",
+            todoDate: "task-date",
+            todoDescription: "task-description",
+            taskId: "task-",
+            formId: "todo-form",
+            dataAttribute: "data",
+            deleteDiv: "delete-div"
+        }, codes = {
+            "1" : "#pending",
+            "2" : "#inProgress",
+            "3" : "#completed"
+        };
 
- todo.init = function (options) {
+    todo.init = function (options) {
 
         options = options || {};
         options = $.extend({}, defaults, options);
@@ -29,7 +29,7 @@ var defaults = {
             generateElement(params);
         });
 
-		    // Drop-Funktion für jede Kategorie hinzufügen
+        // Drop-Funktion für jede Kategorie
         $.each(codes, function (index, value) {
             $(value).droppable({
                 drop: function (event, ui) {
@@ -44,7 +44,7 @@ var defaults = {
                             // Objekt-Code ändern
                             object.code = index;
 
-                            // Neues Element verändern
+                            // Neues Element generieren
                             generateElement(object);
 
                             // Lokalen Speicher updaten
@@ -56,7 +56,8 @@ var defaults = {
                     }
             });
         });
-		 // Drop-Funktion für Löschen
+
+        // Drop-Funktion für das Löschen-Div
         $("#" + options.deleteDiv).droppable({
             drop: function(event, ui) {
                 var element = ui.helper,
@@ -64,10 +65,10 @@ var defaults = {
                     id = css_id.replace(options.taskId, ""),
                     object = data[id];
 
-                // Alte Elemente löschen
+                // Altes Element löschen
                 removeElement(object);
 
-                // Lokalen Speicher updaten
+                // Lokalen Speicher generieren
                 delete data[id];
                 localStorage.setItem("todoData", JSON.stringify(data));
 
@@ -77,37 +78,38 @@ var defaults = {
         })
 
     };
-		
-	// Aufgabe hinzufügen
-	var generateElement = function(params) {
-		var parent = $(codes[params.code]),
-		wrapper;
-	
-		if (!parent) {
-			return;
-		}
-		wrapper = $("<div />",{
-			"class" : defaults.todoTask,
-			"id" : defaults.taskId + params.id,
-			"data" : params.id
-		}).appendTo(parent);
 
-	$("<div />", {
-		"class" : defaults.todoHeader,
-		"text": params.title
-	}).appendTo(wrapper);
+    // Aufgabe hinzufügen
+    var generateElement = function(params){
+        var parent = $(codes[params.code]),
+            wrapper;
 
-	$("<div />", {
-		"class" : defaults.todoDate,
-		"text": params.date
-	}).appendTo(wrapper);
+        if (!parent) {
+            return;
+        }
 
-	$("<div />", {
-		"class" : defaults.todoDescription,
-		"text": params.description
-	}).appendTo(wrapper);
-  
-	wrapper.draggable({
+        wrapper = $("<div />", {
+            "class" : defaults.todoTask,
+            "id" : defaults.taskId + params.id,
+            "data" : params.id
+        }).appendTo(parent);
+
+        $("<div />", {
+            "class" : defaults.todoHeader,
+            "text": params.title
+        }).appendTo(wrapper);
+
+        $("<div />", {
+            "class" : defaults.todoDate,
+            "text": params.date
+        }).appendTo(wrapper);
+
+        $("<div />", {
+            "class" : defaults.todoDescription,
+            "text": params.description
+        }).appendTo(wrapper);
+
+	    wrapper.draggable({
             start: function() {
                 $("#" + defaults.deleteDiv).show();
             },
@@ -117,16 +119,17 @@ var defaults = {
 	        revert: "invalid",
 	        revertDuration : 200
         });
-	};
 
-// Aufgabe löschen
-var removeElement = function(params) {
-  $("#" + defaults.taskId + params.id).remove();
-};
+    };
 
- todo.add = function() {
+    // Aufgabe entfernen
+    var removeElement = function (params) {
+        $("#" + defaults.taskId + params.id).remove();
+    };
+
+    todo.add = function() {
         var inputs = $("#" + defaults.formId + " :input"),
-            errorMessage = "Bitte Bezeichnung eingeben",
+            errorMessage = "Title can not be empty",
             id, title, description, date, tempData;
 
         if (inputs.length !== 4) {
@@ -159,15 +162,15 @@ var removeElement = function(params) {
         // Element generieren
         generateElement(tempData);
 
-        // Reset Form
+        // Liste leeren
         inputs[0].value = "";
         inputs[1].value = "";
         inputs[2].value = "";
     };
 
-    var generateDialog = function (message) {
+   /* var generateDialog = function (message) {
         var responseId = "response-dialog",
-            title = "Messaage",
+            title = "Message",
             responseDialog = $("#" + responseId),
             buttonOptions;
 
@@ -193,7 +196,7 @@ var removeElement = function(params) {
             closeOnEscape: true,
             buttons: buttonOptions
         });
-    };
+    };*/
 
     todo.clear = function () {
         data = {};
