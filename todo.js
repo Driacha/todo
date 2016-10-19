@@ -168,7 +168,7 @@ data = data || {};
         inputs[2].value = "";
     };
 
-   /* var generateDialog = function (message) {
+    var generateDialog = function (message) {
         var responseId = "response-dialog",
             title = "Message",
             responseDialog = $("#" + responseId),
@@ -196,7 +196,7 @@ data = data || {};
             closeOnEscape: true,
             buttons: buttonOptions
         });
-    };*/
+    };
 
     todo.clear = function () {
         data = {};
