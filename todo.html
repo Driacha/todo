@@ -12,11 +12,6 @@
  <div id="header"> To-Do Liste </div>
 <div class="task-list" id="pending">
  <h3>Ausstehend</h3>
-  <div class="todo-task">
-    <div class="task-header">Sample Header</div>
-    <div class="task-date">25/06/1992</div>
-    <div class="task-description">Lorem Ipsum Dolor Sit Amet</div>
-  </div>
 </div>
 
 <div class="task-list" id="inProgress">
@@ -33,11 +28,11 @@
         <input type="text" placeholder="Bezeichnung"/>
         <textarea type="text" placeholder="Beschreibung"></textarea>
         <input type="text" placeholder="Frist (tt/mm/jjjj)"/>
-        <input type="button" class="btn btn-primary" value="Hinzufügen"/>
+        <input type="button" class="btn btn-primary" value="Hinzufügen" onclick="todo.add()"/>
     </form>
 
 
-<input type="button" class="btn btn-primary" value="Liste leeren"/>
+<input type="button" class="btn btn-primary" value="Liste leeren" onclick="todo.clear();" />
 
 <div id="delete-div">Zum Löschen hier hin ziehen</div>
 

@@ -54,7 +54,7 @@ data = data || {};
                             // Löschen-Areal verstecken
                             $("#" + defaults.deleteDiv).hide();
                     }
-            });
+            }); 
         });
 
         // Drop-Funktion für das Löschen-Div
@@ -80,6 +80,7 @@ data = data || {};
     };
 
     // Aufgabe hinzufügen
+	$("." + defaults.todoTask).draggable()
     var generateElement = function(params){
         var parent = $(codes[params.code]),
             wrapper;
@@ -121,6 +122,7 @@ data = data || {};
         });
 
     };
+	var data = JSON.parse(localStorage.getItem("todoData"));
 
     // Aufgabe entfernen
     var removeElement = function (params) {
@@ -154,7 +156,7 @@ data = data || {};
             date: date,
             description: description
         };
-
+			
         // Element im lokalen Speicher speichern
         data[id] = tempData;
         localStorage.setItem("todoData", JSON.stringify(data));
@@ -203,5 +205,4 @@ data = data || {};
         localStorage.setItem("todoData", JSON.stringify(data));
         $("." + defaults.todoTask).remove();
     };
-
-})(todo, data, jQuery);
+}) (todo, data, jQuery);
