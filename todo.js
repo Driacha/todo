@@ -131,7 +131,7 @@ data = data || {};
 
     todo.add = function() {
         var inputs = $("#" + defaults.formId + " :input"),
-            errorMessage = "Title can not be empty",
+            errorMessage = "Bitte eine Bezeichnung eingeben",
             id, title, description, date, tempData;
 
         if (inputs.length !== 4) {
@@ -172,7 +172,7 @@ data = data || {};
 
     var generateDialog = function (message) {
         var responseId = "response-dialog",
-            title = "Message",
+            title = "Achtung",
             responseDialog = $("#" + responseId),
             buttonOptions;
 
