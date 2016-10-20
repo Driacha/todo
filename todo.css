@@ -4,8 +4,9 @@
 
 body {
     /* Override bootstrap properties */
-    background-color: #426663 !important;
+    background-color: #ffffff	!important;
     border: 0 !important;
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 
 #container{
@@ -17,18 +18,25 @@ body {
 }
 
 #header{
+	width: 1030px;
+	height: 45px;
+	background-color: #D7D6D2;
     font-size: 30px;
     text-align: center;
-    margin-bottom: 15px;
-    color: #fff;
-	font-style: bold;
+    margin-bottom: 30px;
+    color: #000;
+	border-top: 3px solid #E00A22;
+	margin-left: 5px;
+	margin-right: 5px;
+	line-height: 45px;
+	
 }
 
 .task-list {
 	width: 250px;
 	float: left;
 	margin: 0 5px;
-	background-color: #e3e3e3;
+	background-color: #DBDAD7;
 	min-height: 240px;
 	border-radius: 5px;
 	padding-bottom: 15px;
@@ -40,7 +48,7 @@ body {
 }
 
 .task-list input {
-	height. 30px;
+	height: 30px;
 }
 
 .todo-task {
@@ -59,20 +67,22 @@ body {
 
 .todo-task > .task-header {
 	font-weight: bold;
+	color: #600;
 }
 
 .todo-task > .task-date{
 	font-size: small;
 	font-style: italic;
 }
+
 h3 {
+	color: #600;
 	text-align: center;
-	font-color: black;
 }
 
 #delete-div {
 	background-color: #fff;
-	border: 3px dotted #426663;
+	border: 3px dotted #600;
 	margin: 10px;
 	height: 75px;
 	line-height: 75px;
